@@ -1,0 +1,30 @@
+{
+  "name": "untitled7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "debug": "protractor debug output_js/index.js",
+    "test": "protractor output_js/index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jasminewd2": "^2.0.6",
+    "@types/node": "^12.7.1",
+    "protractor": "^5.4.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3",
+    "webdriver-manager": "^12.1.6"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.4.0",
+    "@types/jasmine-expect": "^3.8.1",
+    "jasmine": "^3.4.0",
+    "protractor-beautiful-reporter": "^1.2.8",
+    "jasmine-expect": "^4.0.3",
+    "ts-node": "^8.3.0"
+  }
+}
