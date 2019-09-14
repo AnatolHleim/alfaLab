@@ -26,7 +26,8 @@ class FirstScreen {
         this.linkFooterAlfaMainPage = protractor_1.$("[href='https://www.alfabank.by/']");
         this.logo = protractor_1.$("[name='logo-link']");
         this.popUpWarningDialogTitle = protractor_1.$("[class='k-window-title']");
-        this.buttonReturnProcess = protractor_1.$("[data-bind='click: closeWindowWithCallBack']");
+        this.popUpButtonReturnProcess = protractor_1.$("[data-bind='click: closeWindowWithCallBack']");
+        this.popUpButtonAbortProcess = protractor_1.$("[data-bind='click: closeWindow']");
         this.popUpDescriptionText = protractor_1.$("[class='alert']");
     }
     start() {
@@ -93,11 +94,6 @@ class FirstScreen {
             yield this.typePhone(phone);
             yield this.checkBoxAgreeLicence.click();
             yield this.buttonSubmit.click();
-        });
-    }
-    ;
-    waitSMSInput() {
-        return __awaiter(this, void 0, void 0, function* () {
             yield protractor_1.browser.wait(protractor_1.ExpectedConditions.visibilityOf(this.fieldInputSMSCode), 5000, `Waiting for field SMS-code`);
         });
     }
@@ -150,6 +146,16 @@ class FirstScreen {
     getTextPopUpDescription() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield HelperMethods_1.HelperMethods.getText(this.popUpDescriptionText);
+        });
+    }
+    getTextPopUpButtonReturnProcess() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield HelperMethods_1.HelperMethods.getText(this.popUpButtonReturnProcess);
+        });
+    }
+    getTextPopUpButtonAbortProcess() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield HelperMethods_1.HelperMethods.getText(this.popUpButtonAbortProcess);
         });
     }
     getTextFieldUNP() {

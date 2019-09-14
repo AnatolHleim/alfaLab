@@ -74,4 +74,12 @@ describe('Verify link', () => {
         yield firstScreen.clickLogo();
         yield expect(yield firstScreen.getTextPopUpDescription()).toBe(yield constant.textPopUp());
     }));
+    it('verify button continue text', () => __awaiter(this, void 0, void 0, function* () {
+        yield firstScreen.clickLogo();
+        yield expect(yield firstScreen.getTextPopUpButtonReturnProcess()).toBe(yield constant.textPopUpButtonReturn());
+    }));
+    it('verify button abort text', () => __awaiter(this, void 0, void 0, function* () {
+        yield firstScreen.clickLogo();
+        yield expect(yield firstScreen.getTextPopUpButtonAbortProcess()).toBe(yield constant.textPopUpButtonAbort());
+    }));
 });

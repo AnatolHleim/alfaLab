@@ -11,6 +11,8 @@ export class Constants {
     private _moreDigitPhone: string;
     private _searchQuery: string;
     private _textPopUp: string;
+    private _textPopUpButtonReturn: string;
+    private _textPopUpButtonAbort: string;
 
     constructor() {
         this._validUNPToRegister = 'todo';
@@ -25,6 +27,8 @@ export class Constants {
         this._moreDigitPhone = '131231231231232131231321';
         this._searchQuery = 'администрация';
         this._textPopUp = 'Вы собираетесь прервать процесс открытия счета. Все введенные данные не сохранятся. Продолжить открытие счета?';
+        this._textPopUpButtonReturn = 'Да, продолжить';
+        this._textPopUpButtonAbort = 'Прервать процесс';
     };
 
     public async validUNPToScreenTwo() {
@@ -73,5 +77,13 @@ export class Constants {
 
     public async textPopUp() {
         return await this._textPopUp;
+    };
+
+    public async textPopUpButtonReturn() {
+        return await this._textPopUpButtonReturn;
+    };
+
+    public async textPopUpButtonAbort() {
+        return await this._textPopUpButtonAbort;
     };
 }

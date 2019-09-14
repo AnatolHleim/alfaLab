@@ -22,6 +22,8 @@ class Constants {
         this._moreDigitPhone = '131231231231232131231321';
         this._searchQuery = 'администрация';
         this._textPopUp = 'Вы собираетесь прервать процесс открытия счета. Все введенные данные не сохранятся. Продолжить открытие счета?';
+        this._textPopUpButtonReturn = 'Да, продолжить';
+        this._textPopUpButtonAbort = 'Прервать процесс';
     }
     ;
     validUNPToScreenTwo() {
@@ -93,6 +95,18 @@ class Constants {
     textPopUp() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this._textPopUp;
+        });
+    }
+    ;
+    textPopUpButtonReturn() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._textPopUpButtonReturn;
+        });
+    }
+    ;
+    textPopUpButtonAbort() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._textPopUpButtonAbort;
         });
     }
     ;

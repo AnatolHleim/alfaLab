@@ -17,7 +17,8 @@ export class FirstScreen {
     private logo;
     private popUpWarningDialogTitle;
     private popUpDescriptionText;
-    private buttonReturnProcess;
+    private popUpButtonReturnProcess;
+    private popUpButtonAbortProcess;
 
     constructor() {
         this.fieldInputUNP = $("[name='Unp'][type='text']");
@@ -34,7 +35,8 @@ export class FirstScreen {
         this.linkFooterAlfaMainPage = $("[href='https://www.alfabank.by/']");
         this.logo = $("[name='logo-link']");
         this.popUpWarningDialogTitle = $("[class='k-window-title']");
-        this.buttonReturnProcess = $("[data-bind='click: closeWindowWithCallBack']");
+        this.popUpButtonReturnProcess = $("[data-bind='click: closeWindowWithCallBack']");
+        this.popUpButtonAbortProcess = $("[data-bind='click: closeWindow']");
         this.popUpDescriptionText = $("[class='alert']");
 
     }
@@ -86,10 +88,6 @@ export class FirstScreen {
         await this.typePhone(phone);
         await this.checkBoxAgreeLicence.click();
         await this.buttonSubmit.click();
-
-    };
-
-    public async waitSMSInput() {
         await browser.wait(EC.visibilityOf(this.fieldInputSMSCode), 5000, `Waiting for field SMS-code`);
     };
 
@@ -135,6 +133,12 @@ export class FirstScreen {
 
     public async getTextPopUpDescription() {
         return await HelperMethods.getText(this.popUpDescriptionText);
+    }
+    public async getTextPopUpButtonReturnProcess() {
+        return await HelperMethods.getText(this.popUpButtonReturnProcess);
+    }
+    public async getTextPopUpButtonAbortProcess() {
+        return await HelperMethods.getText(this.popUpButtonAbortProcess);
     }
 
     public async getTextFieldUNP() {

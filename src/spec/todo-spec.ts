@@ -84,6 +84,15 @@ describe('Verify link', () => {
         await firstScreen.clickLogo();
         await expect(await firstScreen.getTextPopUpDescription()).toBe(await constant.textPopUp());
     });
+    it('verify button continue text', async () => {
+        await firstScreen.clickLogo();
+        await expect(await firstScreen.getTextPopUpButtonReturnProcess()).toBe(await constant.textPopUpButtonReturn());
+    });
+
+    it('verify button abort text', async () => {
+        await firstScreen.clickLogo();
+        await expect(await firstScreen.getTextPopUpButtonAbortProcess()).toBe(await constant.textPopUpButtonAbort());
+    });
     //
     // it('Login with invalid email', async () => {
     //     await goToBasePage.logInInit();
