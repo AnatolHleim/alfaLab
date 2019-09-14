@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 const shortId = require('shortid');
-const remote = require('selenium-webdriver/remote');
 class BasicPage {
     static get isFullScreen() {
         const fullScreenScript = 'if (!window.screenTop && !window.screenY){return true;}'
@@ -25,7 +24,6 @@ class BasicPage {
             yield protractor_1.browser.switchTo().frame(index);
             yield fn();
             yield protractor_1.browser.switchTo().defaultContent();
-            yield protractor_1.browser.waitForAngular();
         });
     }
     static actionSendKeys(key) {
@@ -285,16 +283,5 @@ class BasicPage {
     }
 }
 BasicPage.MAX_RETRY_ATTEMPTS = 3;
-BasicPage.timeout = {
-    xxs: 1000,
-    xs: 2000,
-    s: 5000,
-    m: 10000,
-    l: 25000,
-    xl: 50000,
-    xxl: 75000,
-    xxxl: 200000,
-    xxxxl: 500000,
-};
 BasicPage.EC = protractor_1.protractor.ExpectedConditions;
 exports.BasicPage = BasicPage;

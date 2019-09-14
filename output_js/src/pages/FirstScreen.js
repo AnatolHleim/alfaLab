@@ -24,6 +24,10 @@ class FirstScreen {
         this.linkSavePersonalInformation = protractor_1.$("[href='https://alfa-biz.by/about/documentation/']");
         this.linkLicenceUsed = protractor_1.$("[href='https://alfa-biz.by/online/banking/alfa-business-online/#more_info']");
         this.linkFooterAlfaMainPage = protractor_1.$("[href='https://www.alfabank.by/']");
+        this.logo = protractor_1.$("[name='logo-link']");
+        this.popUpWarningDialogTitle = protractor_1.$("[class='k-window-title']");
+        this.buttonReturnProcess = protractor_1.$("[data-bind='click: closeWindowWithCallBack']");
+        this.popUpDescriptionText = protractor_1.$("[class='alert']");
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -41,21 +45,21 @@ class FirstScreen {
     requiredUNPError() {
         return __awaiter(this, void 0, void 0, function* () {
             yield protractor_1.browser.wait(protractor_1.ExpectedConditions.visibilityOf(this.messageErrorUNP), 5000, 'Waiting for requiredUNP');
-            return yield this.messageErrorUNP.getText();
+            return yield HelperMethods_1.HelperMethods.getText(this.messageErrorUNP);
         });
     }
     ;
     requiredPhoneError() {
         return __awaiter(this, void 0, void 0, function* () {
             yield protractor_1.browser.wait(protractor_1.ExpectedConditions.visibilityOf(this.messageErrorPhone), 5000, 'Waiting for requiredPhone');
-            return yield this.messageErrorPhone.getText();
+            return yield HelperMethods_1.HelperMethods.getText(this.messageErrorPhone);
         });
     }
     ;
     requiredCheckBoxError() {
         return __awaiter(this, void 0, void 0, function* () {
             yield protractor_1.browser.wait(protractor_1.ExpectedConditions.visibilityOf(this.messageErrorAgreeCheckBox), 5000, 'Waiting for requiredCheckBox');
-            return yield this.messageErrorAgreeCheckBox.getText();
+            return yield HelperMethods_1.HelperMethods.getText(this.messageErrorAgreeCheckBox);
         });
     }
     ;
@@ -102,7 +106,7 @@ class FirstScreen {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.linkSavePersonalInformation.click();
             yield HelperMethods_1.HelperMethods.switchToNewTabIfAvailable();
-            let title = yield protractor_1.browser.driver.getTitle();
+            let title = yield HelperMethods_1.HelperMethods.getPageTitle();
             yield HelperMethods_1.HelperMethods.switchToFirstTab();
             return title;
         });
@@ -111,7 +115,7 @@ class FirstScreen {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.linkLicenceUsed.click();
             yield HelperMethods_1.HelperMethods.switchToNewTabIfAvailable();
-            let title = yield protractor_1.browser.driver.getTitle();
+            let title = yield HelperMethods_1.HelperMethods.getPageTitle();
             yield HelperMethods_1.HelperMethods.switchToFirstTab();
             return title;
         });
@@ -120,20 +124,42 @@ class FirstScreen {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.linkFooterAlfaMainPage.click();
             yield HelperMethods_1.HelperMethods.switchToNewTabIfAvailable();
-            let title = yield protractor_1.browser.driver.getTitle();
+            let title = yield HelperMethods_1.HelperMethods.getPageTitle();
             yield HelperMethods_1.HelperMethods.switchToFirstTab();
             return title;
         });
     }
-    getSMSCode() {
+    getSMSCode(url) {
         return __awaiter(this, void 0, void 0, function* () {
             yield HelperMethods_1.HelperMethods.executeScript("window.open()");
             yield HelperMethods_1.HelperMethods.switchToNewTabIfAvailable();
-            yield protractor_1.browser.driver.get("file:///C:/Users/unreg/Desktop/html/index.html");
+            yield protractor_1.browser.driver.get(url);
             yield protractor_1.browser.wait(protractor_1.ExpectedConditions.visibilityOf(this.textSMS), 5000, `Waiting for text`);
-            let res = yield HelperMethods_1.HelperMethods.getText(this.textSMS);
+            let res = (yield HelperMethods_1.HelperMethods.getText(this.textSMS)).replace('"', '');
             yield HelperMethods_1.HelperMethods.switchToFirstTab();
             return res;
+        });
+    }
+    clickLogo() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.logo.click();
+            yield protractor_1.browser.wait(protractor_1.ExpectedConditions.visibilityOf(this.popUpWarningDialogTitle), 5000, `Waiting pop-up`);
+            return yield HelperMethods_1.HelperMethods.getText(this.popUpWarningDialogTitle);
+        });
+    }
+    getTextPopUpDescription() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield HelperMethods_1.HelperMethods.getText(this.popUpDescriptionText);
+        });
+    }
+    getTextFieldUNP() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield HelperMethods_1.HelperMethods.getAttributeValue(this.fieldInputUNP, 'value');
+        });
+    }
+    getTextFieldPhone() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield HelperMethods_1.HelperMethods.getAttributeValue(this.fieldInputPhone, 'value');
         });
     }
 }

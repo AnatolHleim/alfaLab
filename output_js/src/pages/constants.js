@@ -10,17 +10,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 class Constants {
     constructor() {
-        this._validUNP = '192230006';
+        this._validUNPToRegister = 'todo';
+        this._validUNPNoEGR = 'todo';
+        this._validUNPToScreenTwo = '192230006';
+        this._invalidUNPMoreValue = '192230006342432432432423423';
+        this._validUNPEntity = 'todo';
         this._validPhone = '322132131';
         this._lessDigitUNP = '12345678';
         this._invalidUNP = '192230005';
         this._lessDigitPhone = '1';
+        this._moreDigitPhone = '131231231231232131231321';
         this._searchQuery = 'администрация';
+        this._textPopUp = 'Вы собираетесь прервать процесс открытия счета. Все введенные данные не сохранятся. Продолжить открытие счета?';
     }
     ;
-    validUNP() {
+    validUNPToScreenTwo() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._validUNP;
+            return yield this._validUNPToScreenTwo;
+        });
+    }
+    ;
+    invalidUNPMoreValue() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._invalidUNPMoreValue;
+        });
+    }
+    ;
+    validUNPToRegister() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._validUNPToRegister;
+        });
+    }
+    ;
+    validUNPNoEGR() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._validUNPNoEGR;
+        });
+    }
+    ;
+    validUNPEntity() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._validUNPEntity;
         });
     }
     ;
@@ -42,15 +72,15 @@ class Constants {
         });
     }
     ;
-    invalidEmail() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this._invalidUNP;
-        });
-    }
-    ;
     lessDigitPhone() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this._lessDigitPhone;
+        });
+    }
+    ;
+    moreDigitPhone() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._moreDigitPhone;
         });
     }
     ;
@@ -60,6 +90,11 @@ class Constants {
         });
     }
     ;
+    textPopUp() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this._textPopUp;
+        });
+    }
+    ;
 }
 exports.Constants = Constants;
-;

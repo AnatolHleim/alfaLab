@@ -40,6 +40,16 @@ class HelperMethods {
             yield protractor_1.browser.switchTo().window(handles[0]);
         });
     }
+    static getPageTitle() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield protractor_1.browser.getTitle();
+        });
+    }
+    static getAttributeValue(elem, attribute) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const attributeValue = yield elem.getAttribute(attribute);
+            return attributeValue.trim();
+        });
+    }
 }
-HelperMethods.EC = protractor_1.protractor.ExpectedConditions;
 exports.HelperMethods = HelperMethods;

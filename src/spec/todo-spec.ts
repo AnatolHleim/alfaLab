@@ -1,14 +1,14 @@
-import {browser, ExpectedConditions as EC} from "protractor";
+import {browser} from "protractor";
 import {FirstScreen} from "../pages/FirstScreen";
 import {Constants} from "../pages/constants";
 
 const
-    goToFirstScreen : FirstScreen = new FirstScreen(),
+    firstScreen : FirstScreen = new FirstScreen(),
     constant : Constants = new Constants();
 
 beforeEach(async ()=> {
     await browser.waitForAngularEnabled(false);
-    await goToFirstScreen.start();
+    await firstScreen.start();
     browser.executeScript("window.onbeforeunload = function(){};");
     await browser.manage().deleteAllCookies();
 });
@@ -16,38 +16,48 @@ beforeEach(async ()=> {
 describe('Verify error message', () => {
 
     it('Incorrect UNP message', async () => {
-        await goToFirstScreen.typeUNP(constant.invalidUNP());
-        await goToFirstScreen.sendDataForSMSButton();
-        await expect(await goToFirstScreen.requiredUNPError()).toBe("Неверный УНП");
+        await firstScreen.typeUNP(constant.invalidUNP());
+        await firstScreen.sendDataForSMSButton();
+        await expect(await firstScreen.requiredUNPError()).toBe("Неверный УНП");
     });
 
     it('Empty UNP field message', async () => {
-        await goToFirstScreen.typeUNP("");
-        await goToFirstScreen.sendDataForSMSButton();
-        await expect(await goToFirstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
+        await firstScreen.typeUNP("");
+        await firstScreen.sendDataForSMSButton();
+        await expect(await firstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
     });
 
     it('Less than 9 digits UNP field message', async () => {
-        await goToFirstScreen.typeUNP(constant.lessDigitUNP());
-        await goToFirstScreen.sendDataForSMSButton();
-        await expect(await goToFirstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
+        await firstScreen.typeUNP(constant.lessDigitUNP());
+        await firstScreen.sendDataForSMSButton();
+        await expect(await firstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
+    });
+
+    it('More than 9 digits UNP field split to 9', async () => {
+        await firstScreen.typeUNP(constant.invalidUNPMoreValue());
+        await expect((await firstScreen.getTextFieldUNP()).length).toBe(9);
     });
 
     it('Empty Phone field message', async () => {
-        await goToFirstScreen.typePhone("");
-        await goToFirstScreen.sendDataForSMSButton();
-        await expect(await goToFirstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
+        await firstScreen.typePhone("");
+        await firstScreen.sendDataForSMSButton();
+        await expect(await firstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
     });
 
-    it('Less than 9 digits Phone message', async () => {
-        await goToFirstScreen.typePhone(constant.lessDigitPhone());
-        await goToFirstScreen.sendDataForSMSButton();
-        await expect(await goToFirstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
+    it('Less than 18 digits Phone message', async () => {
+        await firstScreen.typePhone(constant.lessDigitPhone());
+        await firstScreen.sendDataForSMSButton();
+        await expect(await firstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
+    });
+
+    it('More than 18 digits Phone field split to 18', async () => {
+        await firstScreen.typePhone(constant.invalidUNPMoreValue());
+        await expect((await firstScreen.getTextFieldPhone()).length).toBe(18);
     });
 
     it('Empty checkbox message', async () => {
-        await goToFirstScreen.sendDataForSMSButton();
-        await expect(await goToFirstScreen.requiredCheckBoxError()).toBe("Подтвердите согласие с условиями использования");
+        await firstScreen.sendDataForSMSButton();
+        await expect(await firstScreen.requiredCheckBoxError()).toBe("Подтвердите согласие с условиями использования");
     });
 
 
@@ -57,15 +67,22 @@ describe('Verify error message', () => {
 describe('Verify link', () => {
 
     it('Verify link agree personal data save', async () => {
-        await expect(await goToFirstScreen.newTabPersonalDataLinkVerify()).toBe("Документы");
+        await expect(await firstScreen.newTabPersonalDataLinkVerify()).toBe("Документы");
     });
 
     it('Verify link licence uses soft', async () => {
-        await expect(await goToFirstScreen.newTabLicenceUsedLinkVerify()).toBe("Альфа-Бизнес Онлайн — Альфа-Банк");
+        await expect(await firstScreen.newTabLicenceUsedLinkVerify()).toBe("Альфа-Бизнес Онлайн — Альфа-Банк");
     });
 
     it('Verify link footer to home page Alfa-bank', async () => {
-        await expect(await goToFirstScreen.newTabMainPageLinkVerify()).toBe("Альфа-Банк в Беларуси | Минск");
+        await expect(await firstScreen.newTabMainPageLinkVerify()).toBe("Альфа-Банк в Беларуси | Минск");
+    });
+    it('Verify popup logo', async () => {
+        await expect(await firstScreen.clickLogo()).toBe("Подтверждение");
+    });
+    it('verify popup text', async () => {
+        await firstScreen.clickLogo();
+        await expect(await firstScreen.getTextPopUpDescription()).toBe(await constant.textPopUp());
     });
     //
     // it('Login with invalid email', async () => {

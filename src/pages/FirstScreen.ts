@@ -1,4 +1,4 @@
-import {ElementFinder, $, browser, ExpectedConditions as EC, element, By} from 'protractor';
+import {$, browser, ExpectedConditions as EC, element, By} from 'protractor';
 import {HelperMethods} from "./HelperMethods";
 
 export class FirstScreen {
@@ -14,6 +14,10 @@ export class FirstScreen {
     private messageErrorUNP;
     private messageErrorPhone;
     private messageErrorAgreeCheckBox;
+    private logo;
+    private popUpWarningDialogTitle;
+    private popUpDescriptionText;
+    private buttonReturnProcess;
 
     constructor() {
         this.fieldInputUNP = $("[name='Unp'][type='text']");
@@ -27,7 +31,11 @@ export class FirstScreen {
         this.messageErrorAgreeCheckBox = $("[id='ConditionAgree-error']");
         this.linkSavePersonalInformation = $("[href='https://alfa-biz.by/about/documentation/']");
         this.linkLicenceUsed = $("[href='https://alfa-biz.by/online/banking/alfa-business-online/#more_info']");
-        this.linkFooterAlfaMainPage = $("[href='https://www.alfabank.by/']")
+        this.linkFooterAlfaMainPage = $("[href='https://www.alfabank.by/']");
+        this.logo = $("[name='logo-link']");
+        this.popUpWarningDialogTitle = $("[class='k-window-title']");
+        this.buttonReturnProcess = $("[data-bind='click: closeWindowWithCallBack']");
+        this.popUpDescriptionText = $("[class='alert']");
 
     }
 
@@ -39,17 +47,20 @@ export class FirstScreen {
     public async sendDataForSMSButton() {
         await this.buttonSubmit.click();
     };
+
     public async requiredUNPError() {
         await browser.wait(EC.visibilityOf(this.messageErrorUNP), 5000, 'Waiting for requiredUNP');
-        return await this.messageErrorUNP.getText();
+        return await HelperMethods.getText(this.messageErrorUNP);
     };
+
     public async requiredPhoneError() {
         await browser.wait(EC.visibilityOf(this.messageErrorPhone), 5000, 'Waiting for requiredPhone');
-        return await this.messageErrorPhone.getText();
+        return await HelperMethods.getText(this.messageErrorPhone);
     };
+
     public async requiredCheckBoxError() {
         await browser.wait(EC.visibilityOf(this.messageErrorAgreeCheckBox), 5000, 'Waiting for requiredCheckBox');
-        return await this.messageErrorAgreeCheckBox.getText();
+        return await HelperMethods.getText(this.messageErrorAgreeCheckBox);
     };
 
     public async typeUNP(UNP) {
@@ -63,6 +74,7 @@ export class FirstScreen {
         await this.fieldInputPhone.clear();
         await this.fieldInputPhone.sendKeys(phone);
     };
+
     public async typeSMS(SMS) {
         await this.fieldInputSMSCode.click();
         await this.fieldInputSMSCode.clear();
@@ -80,37 +92,56 @@ export class FirstScreen {
     public async waitSMSInput() {
         await browser.wait(EC.visibilityOf(this.fieldInputSMSCode), 5000, `Waiting for field SMS-code`);
     };
-    public async newTabPersonalDataLinkVerify(){
+
+    public async newTabPersonalDataLinkVerify() {
         await this.linkSavePersonalInformation.click();
         await HelperMethods.switchToNewTabIfAvailable();
-       let title =  await browser.driver.getTitle();
+        let title = await HelperMethods.getPageTitle();
         await HelperMethods.switchToFirstTab();
         return title;
     }
 
-    public async newTabLicenceUsedLinkVerify(){
+    public async newTabLicenceUsedLinkVerify() {
         await this.linkLicenceUsed.click();
         await HelperMethods.switchToNewTabIfAvailable();
-        let title =  await browser.driver.getTitle();
+        let title = await HelperMethods.getPageTitle();
         await HelperMethods.switchToFirstTab();
         return title;
     }
 
-    public async newTabMainPageLinkVerify(){
+    public async newTabMainPageLinkVerify() {
         await this.linkFooterAlfaMainPage.click();
         await HelperMethods.switchToNewTabIfAvailable();
-        let title =  await browser.driver.getTitle();
+        let title = await HelperMethods.getPageTitle();
         await HelperMethods.switchToFirstTab();
         return title;
     }
-    public async getSMSCode() {
+
+    public async getSMSCode(url: string) {
         await HelperMethods.executeScript("window.open()");
         await HelperMethods.switchToNewTabIfAvailable();
-        await browser.driver.get("file:///C:/Users/unreg/Desktop/html/index.html");
+        await browser.driver.get(url);
         await browser.wait(EC.visibilityOf(this.textSMS), 5000, `Waiting for text`);
-        let res =  await HelperMethods.getText(this.textSMS);
+        let res = (await HelperMethods.getText(this.textSMS)).replace('"', '');
         await HelperMethods.switchToFirstTab();
         return res;
     }
 
+    public async clickLogo() {
+        await this.logo.click();
+        await browser.wait(EC.visibilityOf(this.popUpWarningDialogTitle), 5000, `Waiting pop-up`);
+        return await HelperMethods.getText(this.popUpWarningDialogTitle);
+    }
+
+    public async getTextPopUpDescription() {
+        return await HelperMethods.getText(this.popUpDescriptionText);
+    }
+
+    public async getTextFieldUNP() {
+        return await HelperMethods.getAttributeValue(this.fieldInputUNP, 'value');
+    }
+
+    public async getTextFieldPhone() {
+        return await HelperMethods.getAttributeValue(this.fieldInputPhone, 'value');
+    }
 }
