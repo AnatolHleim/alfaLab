@@ -1,16 +1,17 @@
 import {$, browser, ExpectedConditions as EC} from "protractor";
 import {HelperMethods} from "./HelperMethods";
-class ScreenNoSuchInEGR {
+
+export class ScreenPhysicEntity {
     private logo;
     private titleScreen;
     private informationMessage;
-    private buttonTryAnotherUNP;
+
 
     constructor() {
         this.logo = $("TO DO");
         this.titleScreen = $("TO DO");
         this.informationMessage = $("TO DO");
-        this.buttonTryAnotherUNP = $("TO DO");
+
     }
 
     public async getTextTitle() {
@@ -21,16 +22,6 @@ class ScreenNoSuchInEGR {
     public async getTextInformation() {
         await browser.wait(EC.visibilityOf(this.informationMessage), 5000, 'Waiting for info');
         return await HelperMethods.getText(this.informationMessage);
-    }
-
-    public async getTextButtonTryAnotherUNP() {
-        await browser.wait(EC.visibilityOf(this.buttonTryAnotherUNP), 5000, 'Waiting for buttonTryAnotherUNP');
-        return await HelperMethods.getText(this.buttonTryAnotherUNP);
-    }
-
-    public async clickButtonTryAnotherUNP() {
-        await browser.wait(EC.visibilityOf(this.buttonTryAnotherUNP), 5000, 'Waiting for buttonTryAnotherUNP');
-        await this.buttonTryAnotherUNP.click();
     }
 
     public async clickLogo() {

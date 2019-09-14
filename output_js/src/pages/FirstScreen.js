@@ -33,6 +33,7 @@ class FirstScreen {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             yield protractor_1.browser.get('');
+            yield HelperMethods_1.HelperMethods.maximizeWindow();
             yield protractor_1.browser.wait(protractor_1.ExpectedConditions.visibilityOf(this.buttonSubmit), 5000, `Waiting for button`);
         });
     }

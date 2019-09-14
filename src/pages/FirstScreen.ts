@@ -43,6 +43,7 @@ export class FirstScreen {
 
     public async start() {
         await browser.get('');
+        browser.manage().window().maximize();
         await browser.wait(EC.visibilityOf(this.buttonSubmit), 5000, `Waiting for button`);
     };
 
