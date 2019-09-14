@@ -10,39 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 class HelperMethods {
-    static maximizeWindow() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.resizeWindow();
-        });
-    }
-    static resizeWindow(width = -1, height = -1) {
-        return __awaiter(this, void 0, void 0, function* () {
-            class Size {
-            }
-            const windowSize = yield this.executeScript(function () {
-                return {
-                    width: window.screen.availWidth,
-                    height: window.screen.availHeight,
-                };
-            });
-            const result = windowSize;
-            if (width !== -1) {
-                result.width = width;
-            }
-            if (height !== -1) {
-                result.height = height;
-            }
-            return this.setWindowSize(result.width, result.height);
-        });
-    }
-    static setWindowSize(width, height) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return protractor_1.browser.driver
-                .manage()
-                .window()
-                .setSize(width, height);
-        });
-    }
     static executeScript(script, ...varArgs) {
         return __awaiter(this, void 0, void 0, function* () {
             return protractor_1.browser.driver.executeScript(script, varArgs);

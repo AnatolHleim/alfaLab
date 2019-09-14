@@ -14,27 +14,27 @@ export const config: Config = {
         defaultTimeoutInterval: 30000,
         showColors: true
 
-    }
-    // onPrepare: function () {
-    //     browser.manage().window().maximize();
-    //     browser.manage().timeouts().implicitlyWait(3000);
-    //     jasmine.getEnv().addReporter(new HtmlReporter({
-    //         baseDirectory: 'test-results',
-    //         preserveDirectory: false, // Preserve base directory
-    //         screenshotsSubfolder: 'screenshots',
-    //         jsonsSubfolder: 'jsons', // JSONs Subfolder
-    //         takeScreenShotsForSkippedSpecs: true, // Screenshots for skipped test cases
-    //         takeScreenShotsOnlyForFailedSpecs: false, // Screenshots only for failed test cases
-    //         docTitle: 'Test Automation Execution Report', // Add title for the html report
-    //         docName: 'TestResult.html', // Change html report file name
-    //         gatherBrowserLogs: true // Store Browser logs
-    //     }).getJasmine2Reporter());
-    //
-    //     let ConsoleReporter = require('jasmine2-reporter').Jasmine2Reporter
-    //     let console_reporter_options = {
-    //         startingSpec: true
-    //     }
-    //     jasmine.getEnv().addReporter(new ConsoleReporter(console_reporter_options))
+    },
+    onPrepare: function () {
+        browser.manage().window().maximize();
+        browser.manage().timeouts().implicitlyWait(3000);
+        jasmine.getEnv().addReporter(new HtmlReporter({
+            baseDirectory: 'test-results',
+            preserveDirectory: false, // Preserve base directory
+            screenshotsSubfolder: 'screenshots',
+            jsonsSubfolder: 'jsons', // JSONs Subfolder
+            takeScreenShotsForSkippedSpecs: true, // Screenshots for skipped test cases
+            takeScreenShotsOnlyForFailedSpecs: false, // Screenshots only for failed test cases
+            docTitle: 'Test Automation Execution Report', // Add title for the html report
+            docName: 'TestResult.html', // Change html report file name
+            gatherBrowserLogs: true // Store Browser logs
+        }).getJasmine2Reporter());
 
-    //}
+        let ConsoleReporter = require('jasmine2-reporter').Jasmine2Reporter
+        let console_reporter_options = {
+            startingSpec: true
+        }
+        jasmine.getEnv().addReporter(new ConsoleReporter(console_reporter_options))
+
+    }
 };
