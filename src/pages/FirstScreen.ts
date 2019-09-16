@@ -23,7 +23,7 @@ export class FirstScreen {
     constructor() {
         this.fieldInputUNP = $("[name='Unp'][type='text']");
         this.fieldInputPhone = $("[name='Phone'][type='text']");
-        this.checkBoxAgreeLicence = element(By.id("ConditionAgree"));
+        this.checkBoxAgreeLicence = $("[id=ConditionAgree]");
         this.buttonSubmit = $("[data-bind='events:{click: btnGetSmsCodeClicked}']");
         this.fieldInputSMSCode = $("[id='smsCode']");
         this.textSMS = $("[class='list-group-item disabled']");

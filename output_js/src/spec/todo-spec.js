@@ -20,41 +20,41 @@ beforeEach(() => __awaiter(this, void 0, void 0, function* () {
 }));
 describe('Verify error message', () => {
     it('Incorrect UNP message', () => __awaiter(this, void 0, void 0, function* () {
-        yield firstScreen.typeUNP(constant.invalidUNP());
+        yield firstScreen.typeUNP(yield constant.invalidUNP());
         yield firstScreen.sendDataForSMSButton();
-        yield expect(yield firstScreen.requiredUNPError()).toBe("Неверный УНП");
+        yield expect(yield firstScreen.requiredUNPError()).toBe(yield constant.errorIncorrectUNP());
     }));
     it('Empty UNP field message', () => __awaiter(this, void 0, void 0, function* () {
         yield firstScreen.typeUNP("");
         yield firstScreen.sendDataForSMSButton();
-        yield expect(yield firstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
+        yield expect(yield firstScreen.requiredUNPError()).toBe(yield constant.errorNotFullUNP());
     }));
     it('Less than 9 digits UNP field message', () => __awaiter(this, void 0, void 0, function* () {
-        yield firstScreen.typeUNP(constant.lessDigitUNP());
+        yield firstScreen.typeUNP(yield constant.lessDigitUNP());
         yield firstScreen.sendDataForSMSButton();
-        yield expect(yield firstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
+        yield expect(yield firstScreen.requiredUNPError()).toBe(yield constant.errorNotFullUNP());
     }));
     it('More than 9 digits UNP field split to 9', () => __awaiter(this, void 0, void 0, function* () {
-        yield firstScreen.typeUNP(constant.invalidUNPMoreValue());
+        yield firstScreen.typeUNP(yield constant.invalidUNPMoreValue());
         yield expect((yield firstScreen.getTextFieldUNP()).length).toBe(9);
     }));
     it('Empty Phone field message', () => __awaiter(this, void 0, void 0, function* () {
         yield firstScreen.typePhone("");
         yield firstScreen.sendDataForSMSButton();
-        yield expect(yield firstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
+        yield expect(yield firstScreen.requiredPhoneError()).toBe(yield constant.errorIncorrectPhone());
     }));
     it('Less than 18 digits Phone message', () => __awaiter(this, void 0, void 0, function* () {
-        yield firstScreen.typePhone(constant.lessDigitPhone());
+        yield firstScreen.typePhone(yield constant.lessDigitPhone());
         yield firstScreen.sendDataForSMSButton();
-        yield expect(yield firstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
+        yield expect(yield firstScreen.requiredPhoneError()).toBe(yield constant.errorIncorrectPhone());
     }));
     it('More than 18 digits Phone field split to 18', () => __awaiter(this, void 0, void 0, function* () {
-        yield firstScreen.typePhone(constant.invalidUNPMoreValue());
+        yield firstScreen.typePhone(yield constant.invalidUNPMoreValue());
         yield expect((yield firstScreen.getTextFieldPhone()).length).toBe(18);
     }));
     it('Empty checkbox message', () => __awaiter(this, void 0, void 0, function* () {
         yield firstScreen.sendDataForSMSButton();
-        yield expect(yield firstScreen.requiredCheckBoxError()).toBe("Подтвердите согласие с условиями использования");
+        yield expect(yield firstScreen.requiredCheckBoxError()).toBe(yield constant.errorCheckBoxAdded());
     }));
 });
 describe('Verify link', () => {

@@ -1,18 +1,23 @@
+
 export class Constants {
-    private _validUNPToScreenTwo: string;
-    private _validUNPToRegister: string;
-    private _validUNPNoEGR: string;
-    private _validUNPEntity: string;
-    private _invalidUNPMoreValue: string;
-    private _validPhone: string;
-    private _invalidUNP: string;
-    private _lessDigitUNP: string;
-    private _lessDigitPhone: string;
-    private _moreDigitPhone: string;
-    private _searchQuery: string;
-    private _textPopUp: string;
-    private _textPopUpButtonReturn: string;
-    private _textPopUpButtonAbort: string;
+    private readonly _validUNPToScreenTwo: string;
+    private readonly _validUNPToRegister: string;
+    private readonly _validUNPNoEGR: string;
+    private readonly _validUNPEntity: string;
+    private readonly _invalidUNPMoreValue: string;
+    private readonly _validPhone: string;
+    private readonly _invalidUNP: string;
+    private readonly _lessDigitUNP: string;
+    private readonly _lessDigitPhone: string;
+    private readonly _moreDigitPhone: string;
+    private readonly _searchQuery: string;
+    private readonly _textPopUp: string;
+    private readonly _textPopUpButtonReturn: string;
+    private readonly _textPopUpButtonAbort: string;
+    private readonly _errorInvalidUNP: string;
+    private readonly _errorNotFullUNP: string;
+    private readonly _errorIncorrectPhone: string;
+    private readonly _errorCheckBoxAdded: string;
 
     constructor() {
         this._validUNPToRegister = 'todo';
@@ -29,61 +34,81 @@ export class Constants {
         this._textPopUp = 'Вы собираетесь прервать процесс открытия счета. Все введенные данные не сохранятся. Продолжить открытие счета?';
         this._textPopUpButtonReturn = 'Да, продолжить';
         this._textPopUpButtonAbort = 'Прервать процесс';
+        this._errorInvalidUNP = "Неверный УНП";
+        this._errorNotFullUNP = "Введите УНП компании (9 цифр)";
+        this._errorIncorrectPhone = "Введите номер мобильного телефона";
+        this._errorCheckBoxAdded = "Подтвердите согласие с условиями использования";
+    };
+
+    public async errorCheckBoxAdded() {
+        return this._errorCheckBoxAdded;
+    };
+
+    public async errorIncorrectPhone() {
+        return this._errorIncorrectPhone;
+    };
+
+    public async errorIncorrectUNP() {
+        return this._errorInvalidUNP;
+    };
+
+    public async errorNotFullUNP() {
+        return this._errorNotFullUNP;
     };
 
     public async validUNPToScreenTwo() {
-        return await this._validUNPToScreenTwo;
+        return this._validUNPToScreenTwo;
     };
 
     public async invalidUNPMoreValue() {
-        return await this._invalidUNPMoreValue;
+        return this._invalidUNPMoreValue;
     };
 
     public async validUNPToRegister() {
-        return await this._validUNPToRegister;
+        return this._validUNPToRegister;
     };
 
     public async validUNPNoEGR() {
-        return await this._validUNPNoEGR;
+        return this._validUNPNoEGR;
     };
 
     public async validUNPEntity() {
-        return await this._validUNPEntity;
+        return this._validUNPEntity;
     };
 
     public async invalidUNP() {
-        return await this._invalidUNP;
+        return this._invalidUNP;
     };
 
     public async lessDigitUNP() {
-        return await this._lessDigitUNP;
+        return this._lessDigitUNP;
     };
 
     public async validPhone() {
-        return await this._validPhone;
+        return this._validPhone;
     };
 
     public async lessDigitPhone() {
-        return await this._lessDigitPhone;
+        return this._lessDigitPhone;
     };
 
     public async moreDigitPhone() {
-        return await this._moreDigitPhone;
+        return this._moreDigitPhone;
     };
 
     public async searchQuery() {
-        return await this._searchQuery;
+        return this._searchQuery;
     };
 
     public async textPopUp() {
-        return await this._textPopUp;
+        return this._textPopUp;
     };
 
     public async textPopUpButtonReturn() {
-        return await this._textPopUpButtonReturn;
+        return this._textPopUpButtonReturn;
     };
 
     public async textPopUpButtonAbort() {
-        return await this._textPopUpButtonAbort;
+        return this._textPopUpButtonAbort;
     };
 }

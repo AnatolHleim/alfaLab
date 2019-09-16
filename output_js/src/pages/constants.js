@@ -24,6 +24,34 @@ class Constants {
         this._textPopUp = 'Вы собираетесь прервать процесс открытия счета. Все введенные данные не сохранятся. Продолжить открытие счета?';
         this._textPopUpButtonReturn = 'Да, продолжить';
         this._textPopUpButtonAbort = 'Прервать процесс';
+        this._errorInvalidUNP = "Неверный УНП";
+        this._errorNotFullUNP = "Введите УНП компании (9 цифр)";
+        this._errorIncorrectPhone = "Введите номер мобильного телефона";
+        this._errorCheckBoxAdded = "Подтвердите согласие с условиями использования";
+    }
+    ;
+    errorCheckBoxAdded() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._errorCheckBoxAdded;
+        });
+    }
+    ;
+    errorIncorrectPhone() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._errorIncorrectPhone;
+        });
+    }
+    ;
+    errorIncorrectUNP() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._errorInvalidUNP;
+        });
+    }
+    ;
+    errorNotFullUNP() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._errorNotFullUNP;
+        });
     }
     ;
     validUNPToScreenTwo() {
@@ -34,7 +62,7 @@ class Constants {
     ;
     invalidUNPMoreValue() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._invalidUNPMoreValue;
+            return this._invalidUNPMoreValue;
         });
     }
     ;
@@ -58,13 +86,13 @@ class Constants {
     ;
     invalidUNP() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._invalidUNP;
+            return this._invalidUNP;
         });
     }
     ;
     lessDigitUNP() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._lessDigitUNP;
+            return this._lessDigitUNP;
         });
     }
     ;
@@ -76,7 +104,7 @@ class Constants {
     ;
     lessDigitPhone() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._lessDigitPhone;
+            return this._lessDigitPhone;
         });
     }
     ;

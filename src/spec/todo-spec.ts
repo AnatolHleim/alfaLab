@@ -16,48 +16,48 @@ beforeEach(async ()=> {
 describe('Verify error message', () => {
 
     it('Incorrect UNP message', async () => {
-        await firstScreen.typeUNP(constant.invalidUNP());
+        await firstScreen.typeUNP(await constant.invalidUNP());
         await firstScreen.sendDataForSMSButton();
-        await expect(await firstScreen.requiredUNPError()).toBe("Неверный УНП");
+        await expect(await firstScreen.requiredUNPError()).toBe(await constant.errorIncorrectUNP());
     });
 
     it('Empty UNP field message', async () => {
         await firstScreen.typeUNP("");
         await firstScreen.sendDataForSMSButton();
-        await expect(await firstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
+        await expect(await firstScreen.requiredUNPError()).toBe(await constant.errorNotFullUNP());
     });
 
     it('Less than 9 digits UNP field message', async () => {
-        await firstScreen.typeUNP(constant.lessDigitUNP());
+        await firstScreen.typeUNP(await constant.lessDigitUNP());
         await firstScreen.sendDataForSMSButton();
-        await expect(await firstScreen.requiredUNPError()).toBe("Введите УНП компании (9 цифр)");
+        await expect(await firstScreen.requiredUNPError()).toBe(await constant.errorNotFullUNP());
     });
 
     it('More than 9 digits UNP field split to 9', async () => {
-        await firstScreen.typeUNP(constant.invalidUNPMoreValue());
+        await firstScreen.typeUNP(await constant.invalidUNPMoreValue());
         await expect((await firstScreen.getTextFieldUNP()).length).toBe(9);
     });
 
     it('Empty Phone field message', async () => {
         await firstScreen.typePhone("");
         await firstScreen.sendDataForSMSButton();
-        await expect(await firstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
+        await expect(await firstScreen.requiredPhoneError()).toBe(await constant.errorIncorrectPhone());
     });
 
     it('Less than 18 digits Phone message', async () => {
-        await firstScreen.typePhone(constant.lessDigitPhone());
+        await firstScreen.typePhone(await constant.lessDigitPhone());
         await firstScreen.sendDataForSMSButton();
-        await expect(await firstScreen.requiredPhoneError()).toBe("Введите номер мобильного телефона");
+        await expect(await firstScreen.requiredPhoneError()).toBe(await constant.errorIncorrectPhone());
     });
 
     it('More than 18 digits Phone field split to 18', async () => {
-        await firstScreen.typePhone(constant.invalidUNPMoreValue());
+        await firstScreen.typePhone(await constant.invalidUNPMoreValue());
         await expect((await firstScreen.getTextFieldPhone()).length).toBe(18);
     });
 
     it('Empty checkbox message', async () => {
         await firstScreen.sendDataForSMSButton();
-        await expect(await firstScreen.requiredCheckBoxError()).toBe("Подтвердите согласие с условиями использования");
+        await expect(await firstScreen.requiredCheckBoxError()).toBe(await constant.errorCheckBoxAdded());
     });
 
 
