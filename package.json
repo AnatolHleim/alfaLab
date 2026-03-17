@@ -14,7 +14,7 @@
   "dependencies": {
     "@types/jasminewd2": "^2.0.6",
     "@types/node": "^12.7.5",
-    "protractor": "^5.4.2",
+    "protractor": "^6.0.0",
     "jasmine": "^3.4.0",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3",
